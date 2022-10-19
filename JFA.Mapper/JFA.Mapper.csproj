@@ -8,7 +8,7 @@
     <Title>Map one object to another</Title>
     <Authors>Javlon Fattoev</Authors>
     <Company>Fattoev</Company>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Description>Map one object to another</Description>
     <PackageIcon>JFA.png</PackageIcon>
     <PackageTags>mapper, tool</PackageTags>
