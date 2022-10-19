@@ -4,8 +4,11 @@ using System.Reflection;
 
 public static class Mapper
 {
-    public static T To<T>(this object source, MapperConfig? config = null) where T : class
+    public static T? To<T>(this object? source, MapperConfig? config = null) where T : class
     {
+        if (source == null)
+            return default;
+
         var to = Activator.CreateInstance<T>();
 
         foreach (var sourceProperty in source.GetType().GetProperties())
@@ -28,8 +31,7 @@ public static class Mapper
 
     public static MapperConfig Map<TSource, TDestination>(this MapperConfig config, Expression<Func<TSource, object>> from, Expression<Func<TDestination, object>> to)
     {
-        config.Config.Add(GetPropertyName(from), GetPropertyName(to));
-        return config;
+        return config.Map(GetPropertyName(from), GetPropertyName(to));
     }
 
     internal static PropertyInfo? GetToProperty<T>(this PropertyInfo source, MapperConfig? config) where T : class
