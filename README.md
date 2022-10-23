@@ -3,7 +3,7 @@ Map one object to another
 
 # Steps
 
-> Install package
+> Install package from [nuget.org](https://www.nuget.org/packages/JFA.Mapper)
 ```PM
 NuGet\Install-Package JFA.Mapper -Version <VERSION>
 ```
