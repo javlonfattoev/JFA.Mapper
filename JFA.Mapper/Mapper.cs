@@ -31,7 +31,7 @@ public static class Mapper
 
     public static MapperConfig Map<TSource, TDestination>(this MapperConfig config, Expression<Func<TSource, object>> from, Expression<Func<TDestination, object>> to)
     {
-        return config.Map(GetPropertyName(from), GetPropertyName(to));
+        return config.Map(from.GetPropertyName(), to.GetPropertyName());
     }
 
     internal static PropertyInfo? GetToProperty<T>(this PropertyInfo source, MapperConfig? config) where T : class
@@ -43,9 +43,9 @@ public static class Mapper
         return typeof(T).GetProperty(source.Name);
     }
 
-    internal static string GetPropertyName<T>(Expression<Func<T, object>> property)
+    internal static string GetPropertyName<T>(this Expression<Func<T, object>> propertyExpression)
     {
-        var lambda = (LambdaExpression)property;
+        var lambda = (LambdaExpression)propertyExpression;
         MemberExpression memberExpression;
 
         if (lambda.Body is UnaryExpression expression)
